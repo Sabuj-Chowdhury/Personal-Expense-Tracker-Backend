@@ -1,12 +1,16 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import { errorHandler } from "./app/middleware/errorHandler";
+import { expenseRoute } from "./app/module/expenses/expenses.controller";
 
 const app = express();
 
 // middlewares
 app.use(express.json());
 app.use(cors());
+
+// router
+app.use("/expenses", expenseRoute);
 
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({
