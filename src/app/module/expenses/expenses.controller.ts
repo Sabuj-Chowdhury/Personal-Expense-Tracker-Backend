@@ -78,3 +78,31 @@ expenseRoute.patch(
     }
   }
 );
+
+//******** DELETE expenses
+
+expenseRoute.delete(
+  "/:id",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const expenseID = req.params.id;
+
+      const isExist = await Expenses.findById(expenseID);
+      if (!isExist) {
+        throw new Error("no such expense found!");
+      }
+
+      const expense = await Expenses.findByIdAndDelete(expenseID, {
+        new: true,
+      });
+
+      res.status(200).json({
+        success: true,
+        message: "Expense deleted successfully!",
+        data: expense,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
