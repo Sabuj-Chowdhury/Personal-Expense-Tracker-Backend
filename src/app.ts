@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import notFoundRoute from "./app/middleware/notFoundRoute";
+import globalErrorHandler from "./app/middleware/globalErrorhandler";
 
 const app = express();
 
@@ -14,6 +15,9 @@ app.get("/", (req: Request, res: Response) => {
     message: "welcome to Personal Expense tracker API!",
   });
 });
+
+// global error Handler
+app.use(globalErrorHandler);
 
 // NOT found route middleware
 app.use(notFoundRoute);
