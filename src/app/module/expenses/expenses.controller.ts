@@ -50,6 +50,13 @@ expenseRoute.patch(
       const expenseID = req.params.id;
       const updateExpenses = req.body;
 
+      const isExist = await Expenses.findById(expenseID);
+
+      //   if id doesn't match
+      if (!isExist) {
+        throw new Error("no such expense id found!");
+      }
+
       // Only validate if amount is provided and less than and equal to 0
       if (updateExpenses.amount !== undefined && updateExpenses.amount <= 0) {
         throw new Error("Amount must be greater than 0!");
