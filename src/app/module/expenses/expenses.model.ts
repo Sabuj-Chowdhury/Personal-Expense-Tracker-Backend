@@ -22,7 +22,7 @@ const expensesSchema = new Schema<IExpenses>(
     },
     date: {
       type: Date,
-      required: [true, "Date is required"],
+      required: true,
     },
   },
   {
