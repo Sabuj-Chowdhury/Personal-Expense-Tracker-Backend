@@ -15,4 +15,14 @@ const globalErrorHandler = (
   }
 };
 
-export default globalErrorHandler;
+const notFoundRoute = (req: Request, res: Response) => {
+  res.status(404).json({
+    success: false,
+    message: "Route not Found!",
+  });
+};
+
+export const errorHandler = {
+  globalErrorHandler,
+  notFoundRoute,
+};
