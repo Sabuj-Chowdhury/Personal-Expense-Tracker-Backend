@@ -1,10 +1,7 @@
-import express from "express";
 import { Server } from "http";
 import mongoose from "mongoose";
-
 import { envVariable } from "./app/config/env";
-
-const app = express();
+import app from "./app";
 
 let server: Server;
 
