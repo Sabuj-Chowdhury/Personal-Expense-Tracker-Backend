@@ -19,3 +19,25 @@ const startServer = async () => {
 };
 
 startServer();
+
+// uncaught exception error
+process.on("uncaughtException", (err) => {
+  console.log(`Uncaught exception detected ... Server shutting down ....`, err);
+  if (server) {
+    server.close(() => {
+      process.exit(1);
+    });
+  }
+  process.exit(1);
+});
+
+// sigterm ---> signal termination error
+process.on("SIGTERM", () => {
+  console.log(`Signal termination error, SIGTERM....Server shutting down`);
+  if (server) {
+    server.close(() => {
+      process.exit(1);
+    });
+  }
+  process.exit(1);
+});
