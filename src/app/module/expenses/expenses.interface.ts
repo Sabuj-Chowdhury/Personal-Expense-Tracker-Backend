@@ -5,4 +5,5 @@ export interface IExpenses {
   amount: number;
   category: string;
   date: Date;
+  email: string;
 }

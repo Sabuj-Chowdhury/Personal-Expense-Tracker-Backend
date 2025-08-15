@@ -24,6 +24,9 @@ const expensesSchema = new Schema<IExpenses>(
       type: Date,
       required: true,
     },
+    email: {
+      type: String,
+    },
   },
   {
     versionKey: false,
