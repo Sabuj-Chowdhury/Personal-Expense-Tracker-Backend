@@ -104,6 +104,7 @@ Create a `.env` file at root:
 PORT=5000
 MONGODB_URI=your_mongodb_uri_here
 JWT_ACCESS_SECRET=your_jwt_secret
+JWT_ACCESS_EXPIRES=your expiry time
 ```
 
 ### 4. Run the Server (in Dev Mode)
