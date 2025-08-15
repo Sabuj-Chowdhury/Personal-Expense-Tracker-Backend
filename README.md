@@ -86,8 +86,8 @@ Tokens are verified inside `checkAuth.ts` middleware.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/expense-tracker-backend.git
-cd expense-tracker-backend
+git clone https://github.com/Sabuj-Chowdhury/Personal-Expense-Tracker-Backend
+cd Personal-Expense-Tracker-Backend
 ```
 
 ### 2. Install Dependencies
