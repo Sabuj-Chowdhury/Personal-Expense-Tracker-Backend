@@ -33,7 +33,9 @@ expenseRoute.get(
   checkAuth,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const expense = await Expenses.find();
+      const filter = req.query;
+      // console.log(filter);
+      const expense = await Expenses.find(filter);
 
       res.status(200).json({
         success: true,
