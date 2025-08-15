@@ -1,16 +1,19 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { Expenses } from "./expenses.model";
+import { IExpenses } from "./expenses.interface";
+import { checkAuth } from "../../middleware/checkAuth";
 
 export const expenseRoute = Router();
 
 // ******* CREATE Expense
 expenseRoute.post(
   "/",
+  checkAuth,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const body = req.body;
+      const payload: IExpenses = req.body;
 
-      const expense = await Expenses.create(body);
+      const expense = await Expenses.create(payload);
 
       res.status(201).json({
         success: true,
@@ -27,6 +30,7 @@ expenseRoute.post(
 
 expenseRoute.get(
   "/",
+  checkAuth,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const expense = await Expenses.find();
@@ -45,10 +49,11 @@ expenseRoute.get(
 // ********* UPDATE single expenses
 expenseRoute.patch(
   "/:id",
+  checkAuth,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const expenseID = req.params.id;
-      const updateExpenses = req.body;
+      const updateExpenses: Partial<IExpenses> = req.body;
 
       const isExist = await Expenses.findById(expenseID);
 
@@ -83,6 +88,7 @@ expenseRoute.patch(
 
 expenseRoute.delete(
   "/:id",
+  checkAuth,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const expenseID = req.params.id;
